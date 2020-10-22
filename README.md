@@ -3,4 +3,4 @@
 ### Nuestro primer respositorio compartido con los estudiantes
 #### Acá inicia el documento
 
-* este
+* esto tendrá la función de un manual
