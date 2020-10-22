@@ -1,0 +1,89 @@
+---
+title: "clase 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+
+lista <-1:100
+
+lista [3]
+
+```
+
+```{r}
+iris
+iris [1,]
+iris[,1]
+iris [1,2]
+```
+
+## Libreria
+```{r}
+library(tidyverse)
+
+
+```
+```{r}
+glimpse(iris)
+
+iris%>%
+  glimpse()
+
+head(iris)
+tail(iris)
+
+summary(iris)
+
+## llamar por nombre $
+iris$Sepal.Length
+iris$Sepal.Length>6
+iris[iris$Sepal.Length>6,]
+iris[iris$Petal.Length>5,]
+iris[iris$Sepal.Width>4,]
+
+```
+```{r}
+iris%>%
+  ggplot(aes(Sepal.Length, fill= Species))+
+  geom_histogram()+
+  facet_wrap(~Species, scales = "free")
+  labs(title = "Datos largo del Sépalo")                  
+```
+```{r}
+iris%>%
+  group_by(Species)%>%
+  summarize(Promedio=mean(Sepal.Length),
+            Mediana=median(Sepal.Length),
+            p25=quantile(Sepal.Length)[2],
+            p75=quantile(Sepal.Length)[4])%>%
+  ggplot(aes(Mediana, Species, color=Species))+
+  geom_point(show.legend = FALSE, aes(size=Mediana))+
+  geom_errorbar(aes(xmin=p25,xmax=p75), show.legend = FALSE, linetype = "dashed")+
+  labs(title = "Distribución de las especies según el cuantil")
+```
+
+```{r}
+library(skimr)
+```
+
+
+
+```{r}
+iris%>%
+  dplyr::group_by(Species)%>%
+  skim()
+
+
+
+```
+
+
+
+
+
